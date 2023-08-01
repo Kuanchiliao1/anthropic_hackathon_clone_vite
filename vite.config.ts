@@ -2,6 +2,7 @@
 import path from "path";
 import { defineConfig } from "vite";
 import packageJson from "./package.json";
+import tailwindcss from 'tailwindcss';
 
 const getPackageName = () => {
   return packageJson.name;
@@ -31,6 +32,11 @@ module.exports = defineConfig({
       name: getPackageNameCamelCase(),
       formats,
       fileName: (format) => fileName[format],
+    },
+  },
+  css: {
+    postcss: {
+      plugins: [tailwindcss],
     },
   },
   test: {
