@@ -1,16 +1,11 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { geolocation } from "@vercel/edge";
 
 export const config = {
   runtime: "edge",
 };
 
-export default function handler(
-  request: VercelRequest,
-  response: VercelResponse
-) {
-  response.status(200).json({
-    body: request.body,
-    query: request.query,
-    cookies: request.cookies,
-  });
+export default function handler(req: Request) {
+  const { city } = geolocation(req);
+
+  return new Response(`Hello, from ${city} I'm now an Edge Function!`);
 }
