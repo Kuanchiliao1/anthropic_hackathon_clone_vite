@@ -7,7 +7,10 @@ module.exports = defineConfig({
   base: "./",
   build: {
     rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'), // Point to your app's entry point HTML
+      input: {
+        index: path.resolve(__dirname, 'index.html'),
+        mainquests: path.resolve(__dirname, 'mainquests.html'),
+      }, // Point to your app's entry point HTML
     }
   },
   css: {
